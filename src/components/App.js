@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedSongId: this.props.data.selectedSongId,
-      selectedPlaylistId: 1
+      selectedPlaylistId: this.props.data.selectedPlaylistId
     }
     this.handleSongSelect = this.handleSongSelect.bind(this)
     this.handlePlaylistSelect = this.handlePlaylistSelect.bind(this)
@@ -16,20 +16,20 @@ class App extends React.Component {
   handleSongSelect(id) {
     this.setState({ selectedSongId: id })
   }
-
   handlePlaylistSelect(id) {
-    this.setState({ selectedPlaylistId: id })
+    let song = this.props.data.playlists[id-1].songs[0]
+    this.setState({ selectedPlaylistId: id, selectedSongId: song })
   }
 
   render() {
     let data = this.props.data
     let selectedPlaylistSongIds = data.playlists[this.state.selectedPlaylistId-1].songs;
+
     let filterById = (obj) => {
       return selectedPlaylistSongIds.includes(obj.id);
     }
 
     let selectedPlaylistSongs = data.songs.filter(filterById);
-
     return (
       <div className="App row">
         <div className="PlaylistCollection">
@@ -44,7 +44,7 @@ class App extends React.Component {
         <div className="song-list">
           <h1>Songs</h1>
           <SongCollection
-            songs={data.songs}
+            songs={selectedPlaylistSongs}
             selectedSongId={this.state.selectedSongId}
             handleSongSelect={this.handleSongSelect}
           />
