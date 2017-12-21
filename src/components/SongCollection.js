@@ -2,21 +2,16 @@ import React, {Component} from 'react'
 import Song from './Song'
 
 
-class SongCollection extends Component{
-  constructor(props){
-    super(props)
-  }
-render(){
+const SongCollection = props => {
 
-
-  let songs = this.props.songs.map((song)=>{
+  let songs = props.songs.map((song)=>{
 
     let className;
-    if (this.props.selectedSongId === song.id) {
+    if (props.selectedSongId === song.id) {
       className = "selected"
     }
 
-    let handleSongSelect = () => {this.props.handleSongSelect(song.id)}
+    let handleSongSelect = () => {props.handleSongSelect(song.id)}
     return (
       <Song
         key = {song.id}
@@ -34,7 +29,7 @@ render(){
       {songs}
     </ul>
   )
-  }
+
 }
 
 

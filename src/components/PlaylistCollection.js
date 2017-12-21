@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import Playlist from './Playlist'
 
-class PlaylistCollection extends Component {
-  constructor(props) {
-    super(props);
-  }
+const PlaylistCollection = props => {
 
-  render(){
-    let playlistImport = this.props.playlists;
+    let playlistImport = props.playlists;
 
     let playlists = playlistImport.map((playlist) => {
       let className;
 
-      if(this.props.selectedPlaylistId === playlist.id) {
+      if(props.selectedPlaylistId === playlist.id) {
         className = "selected"
       }
 
 
       let handlePlaylistSelect = () => {
-        this.props.handlePlaylistSelect(playlist.id)
+        props.handlePlaylistSelect(playlist.id)
       }
 
       return (
@@ -36,7 +32,7 @@ class PlaylistCollection extends Component {
         {playlists}
       </ul>
     )
-  }
+
 }
 
 export default PlaylistCollection;
