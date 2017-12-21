@@ -15,6 +15,8 @@ render(){
     if (this.props.selectedSongId === song.id) {
       className = "selected"
     }
+
+    let handleSongSelect = () => {this.props.handleSongSelect(song.id)}
     return (
       <Song
         key = {song.id}
@@ -22,6 +24,7 @@ render(){
         artist = {song.artist}
         album = {song.album}
         styling={className}
+        handleSongSelect={handleSongSelect}
       />
     )
   }

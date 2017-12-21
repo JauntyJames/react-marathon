@@ -16,11 +16,17 @@ class PlaylistCollection extends Component {
         className = "selected"
       }
 
+
+      let handlePlaylistSelect = () => {
+        this.props.handlePlaylistSelect(playlist.id)
+      }
+
       return (
         <Playlist
           key={playlist.id}
           playlist={playlist}
           styling={className}
+          handlePlaylistSelect={handlePlaylistSelect}
         />
       )
     }

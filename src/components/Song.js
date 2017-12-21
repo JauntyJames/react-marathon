@@ -3,7 +3,7 @@ const Song = (props) => {
 
 
    return (
-     <li className={props.styling}>{props.name}-{props.artist}</li>
+     <li className={props.styling} onClick={props.handleSongSelect}>{props.name}-{props.artist}</li>
 
    )
 }
